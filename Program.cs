@@ -90,6 +90,24 @@ class Program
         // Prompt for character details (name, class, level, hit points, equipment)
         // DO NOT just ask the user to enter a new line of CSV data or enter the pipe-separated equipment string
         // Append the new character to the lines array
+        Console.Write("Enter your character's name: ");
+        var name = Console.ReadLine();
+
+        Console.Write("Enter your character's class: ");
+        var cclass = Console.ReadLine();
+
+        Console.Write("Enter your character's level: ");
+        var level = int.Parse(Console.ReadLine());
+
+        Console.Write("Enter your character's HP: ");
+        var health = int.Parse(Console.ReadLine());
+
+        Console.Write("Enter your character's equipment (separate items with a '|'): ");
+        var equipment = Console.ReadLine();
+
+        var newCharacter = $"{name},{cclass},{level},{health},{equipment}";
+
+        lines = lines.Concat(new string[] {newCharacter}).ToArray();
     }
 
     static void LevelUpCharacter(string[] lines)
