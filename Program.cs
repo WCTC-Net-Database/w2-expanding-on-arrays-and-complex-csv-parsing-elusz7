@@ -32,6 +32,7 @@ class Program
                     LevelUpCharacter(lines);
                     break;
                 case "4":
+                    File.WriteAllLines(filePath, lines);
                     return;
                 default:
                     Console.WriteLine("Invalid choice. Please try again.");
