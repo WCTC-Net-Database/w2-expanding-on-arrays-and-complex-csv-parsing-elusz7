@@ -48,31 +48,39 @@ class Program
             string line = lines[i];
 
             string name;
+            string[] splitLine;
             int commaIndex;
 
             // Check if the name is quoted
             if (line.StartsWith("\""))
             {
                 // TODO: Find the closing quote and the comma right after it
+                splitLine = line.Split("\",");
+                name = splitLine[0];
+                splitLine = splitLine[1].Split(",");
                 // TODO: Remove quotes from the name if present and parse the name
-                // name = ...
+                name = (name.Split(",")[1] + name.Split(",")[0]).Replace("\"", " ").Trim(); //switch name, change " to a space, and trim initial white space
             }
             else
             {
                 // TODO: Name is not quoted, so store the name up to the first comma
-                // name =
+                commaIndex = line.IndexOf(",");
+                name = line.Substring(0, commaIndex);
+                line = line.Substring(commaIndex + 1, line.Length - commaIndex - 1);
+                splitLine = line.Split(",");
             }
 
+
             // TODO: Parse characterClass, level, hitPoints, and equipment
-            // string characterClass = ...
-            // int level = ...
-            // int hitPoints = ...
+            string characterClass = splitLine[0];
+            int level = int.Parse(splitLine[1]);
+            int hitPoints = int.Parse(splitLine[2]);
 
             // TODO: Parse equipment noting that it contains multiple items separated by '|'
-            // string[] equipment = ...
+            string[] equipment = splitLine[3].Split('|');
 
             // Display character information
-            // Console.WriteLine($"Name: {name}, Class: {characterClass}, Level: {level}, HP: {hitPoints}, Equipment: {string.Join(", ", equipment)}");
+            Console.WriteLine($"Name: {name}, Class: {characterClass}, Level: {level}, HP: {hitPoints}, Equipment: {string.Join(", ", equipment)}");
         }
     }
 
