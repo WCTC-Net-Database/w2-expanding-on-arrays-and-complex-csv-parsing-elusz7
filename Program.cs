@@ -107,7 +107,7 @@ class Program
 
         var newCharacter = $"{name},{cclass},{level},{health},{equipment}";
 
-        lines = lines.Concat(new string[] {newCharacter}).ToArray();
+        lines = lines.Concat(new string[] { newCharacter }).ToArray();
     }
 
     static void LevelUpCharacter(string[] lines)
@@ -122,19 +122,19 @@ class Program
 
             // TODO: Check if the name matches the one to level up
             // Do not worry about case sensitivity at this point
-            if (line.Contains(nameToLevelUp))
-            {
+            if (line.Contains(nameToLevelUp)) {
 
                 // TODO: Split the rest of the fields locating the level field
-                // string[] fields = ...
-                // int level = ...
+                string[] fields = line.Split(",");
+                int level = int.Parse(fields[2]);
 
                 // TODO: Level up the character
-                // level++;
-                // Console.WriteLine($"Character {name} leveled up to level {level}!");
+                level++;
+                Console.WriteLine($"Character {nameToLevelUp} leveled up to level {level}!");
 
                 // TODO: Update the line with the new level
-                // lines[i] = ...
+                fields[2] = level.ToString();
+                lines[i] = string.Join(",", fields);
                 break;
             }
         }
